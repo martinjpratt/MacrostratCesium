@@ -42,8 +42,12 @@
 			longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
 			latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
 			$.getJSON('https://macrostrat.org/api/v2/mobile/point?lat=' + latitudeString + '&lng=' + longitudeString + '&format=json', function(data) {
-				var text = `Description: ${data.success.data.desc}`
-				$(".mypanel").html('(' + longitudeString + ', ' + latitudeString + ')<br>' + text);
+				var name = `<b>Name:</b> ${data.success.data.name}`
+				var age = `<b>Age:</b> ${data.success.data.age}`
+				var description = `<b>Description:</b> ${data.success.data.desc}`
+				var reference = `<b>Reference:</b> ${data.success.data.comm}`
+				
+				$(".mypanel").html('(' + longitudeString + ', ' + latitudeString + ')<br>' + name + '<br>' + description + '<br>' + age + '<br>' + reference);
 			});
 			
 		}
